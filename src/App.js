@@ -13,7 +13,7 @@ function App() {
         {/* Stack the columns on mobile by making one full-width and the other half-width */}
         <Row className="tabHeader">
           <Col xs={12} md={8}>
-            Oan create Note React App.
+            Note React App.
           </Col>
         </Row>
 

@@ -12,19 +12,53 @@
 .searchTab {
   text-align: center;
 }
+.btnEditor {
+  margin: 3px;
+}
 .allNote {
   border: #3a3e3f;
   background-color: #ceddd3d5;
+  margin: 10 20 20 20px;
+  padding: 10px;
+}
+.noteList {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.flex-item {
+  width: 100px;
+}
+.saveBtn {
+  width: 100%;
+  padding: 10px;
+  margin: 10;
+}
+.allNote li {
+  display: block;
+  text-decoration: none;
+  flex-flow: wrap;
 }
 .editNote {
+  box-sizing: border-box;
   border: #3a3e3f;
   background-color: #a9d6f5d5;
+  margin: 10 20 20 20px;
+  padding: 10px;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .tabHeader {
     font-size: 2em;
   }

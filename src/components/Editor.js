@@ -17,11 +17,8 @@ export default function Editor() {
           <Form.Control as="textarea" rows={3} placeholder="Your note" />
         </Form.Group>
       </Form>
-      <Button variant="outline-primary" size="sm">
+      <Button variant="info" size="sm" className="saveBtn">
         Save
-      </Button>{' '}
-      <Button variant="outline-danger" size="sm">
-        Delete
       </Button>{' '}
     </div>
   )
