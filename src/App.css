@@ -1,12 +1,34 @@
 .App {
   text-align: center;
 }
-
+.tabHeader {
+  color: #10e9e9;
+  font-size: 3rem;
+  font-weight: 400;
+  align-content: flex-end;
+  height: 20vh;
+  background-image: linear-gradient(to bottom right, rgb(28, 143, 189), rgba(42, 42, 153, 0.842));
+}
+.searchTab {
+  text-align: center;
+}
+.allNote {
+  border: #3a3e3f;
+  background-color: #ceddd3d5;
+}
+.editNote {
+  border: #3a3e3f;
+  background-color: #a9d6f5d5;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+@media only screen and (max-width: 600px) {
+  .tabHeader {
+    font-size: 2em;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
