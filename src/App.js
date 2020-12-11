@@ -1,44 +1,45 @@
 import './App.css'
-import {Container, Row, Col} from 'react-bootstrap'
-import React from 'react'
+import {Container, Row, Col, Jumbotron, Button} from 'react-bootstrap'
+import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Note from './components/Note'
 import Editor from './components/Editor'
 import Search from './components/Search'
+import Allnotes from './components/Allnotes'
+import * as N from './utils/NoteHelpers'
 
+// console.log(N.createNote('55555', 'testNew', 'newbody'))
 function App() {
+  const [selectedNote, setSelectedNote] = useState(undefined)
+
   return (
-    <div className="App">
-      <Container>
-        {/* Stack the columns on mobile by making one full-width and the other half-width */}
-        <Row className="tabHeader">
-          <Col xs={12} md={8}>
-            Note React App.
-          </Col>
-        </Row>
+    <Container>
+      <Jumbotron className="tabHeader">
+        <h2>My Note App</h2>
+      </Jumbotron>
 
-        {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
-        <Row>
-          <Col sm={12} md={8}>
-            <Search> </Search>
-          </Col>
-        </Row>
+      <Row>
+        <Col sm={12} md={12}>
+          <Search> </Search>
+        </Col>
+      </Row>
 
-        {/* Columns are always 50% wide, on mobile and desktop */}
-        <Row>
-          <Col className="allNote" sm={12} md={6}>
-            <div> All notes </div>
-            <div>
-              <Note> </Note>
-            </div>
-          </Col>
-          <Col className="editNote" sm={12} md={6}>
-            Edit notes
-            <Editor> </Editor>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      <Row>
+        <Col className="allNote" sm={12} md={6}>
+          <div>
+            <Button variant="info" size="sm" className="mb-4 mt-2" block>
+              + New Note
+            </Button>
+          </div>
+          <div className="mb-4">
+            <Allnotes selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+          </div>
+        </Col>
+        <Col className="editNote" sm={12} md={6}>
+          Edit notes
+          <Editor selectedNote={selectedNote} />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
