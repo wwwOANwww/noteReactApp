@@ -1,16 +1,27 @@
 import './App.css'
 import {Container, Row, Col, Jumbotron, Button} from 'react-bootstrap'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Editor from './components/Editor'
 import Search from './components/Search'
 import Allnotes from './components/Allnotes'
 import * as N from './utils/NoteHelpers'
+import {getNotes} from './utils/NoteHelpers'
 
 // console.log(N.createNote('55555', 'testNew', 'newbody'))
 function App() {
   const [selectedNote, setSelectedNote] = useState(undefined)
+  const [notes, setNotes] = useState([])
+  // setNotes(getNotes())
+  useEffect(() => {
+    const notes = getNotes()
+    setNotes(notes)
+  }, [setNotes])
 
+  const refreshList = () => {
+    const notes = getNotes()
+    setNotes([...notes])
+  }
   return (
     <Container>
       <Jumbotron className="tabHeader">
@@ -31,12 +42,12 @@ function App() {
             </Button>
           </div>
           <div className="mb-4">
-            <Allnotes selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+            <Allnotes notes={notes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
           </div>
         </Col>
         <Col className="editNote" sm={12} md={6}>
           Edit notes
-          <Editor selectedNote={selectedNote} />
+          <Editor refreshList={refreshList} selectedNote={selectedNote} />
         </Col>
       </Row>
     </Container>

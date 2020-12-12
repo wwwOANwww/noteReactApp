@@ -6,8 +6,8 @@
 // ]
 const notes = [
   {id: 1, title: 'to do getNotesgetNotes1', body: 'go to sleep1'},
-  {id: 2, title: 'to do  getNotes getNotes2', body: 'go to sleep1'},
-  {id: 32, title: 'to dogetNotes  3', body: 'go to sleep1'},
+  {id: 2, title: 'to do  getNotes getNotes2', body: 'go to sleep2'},
+  {id: 3, title: 'to dogetNotes  3', body: 'go to sleep3'},
 ]
 
 export function getNote(id) {

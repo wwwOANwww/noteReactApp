@@ -1,11 +1,11 @@
 import React from 'react'
-import {getNotes} from '../utils/NoteHelpers'
+// import {getNotes} from '../utils/NoteHelpers'
 import {ListGroup} from 'react-bootstrap'
-import '../App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import '../App.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 let selectedNote = undefined
-export default function Allnotes({selectedNote, setSelectedNote}) {
+export default function Allnotes({selectedNote, setSelectedNote, notes}) {
   // or i can write like this 2 lines
   // export default function Allnotes(props) {
   // const {selectedNote, setSelectedNote} = props
@@ -22,7 +22,7 @@ export default function Allnotes({selectedNote, setSelectedNote}) {
   return (
     <>
       <ListGroup as="ul">
-        {getNotes().map((note, index) => (
+        {notes.map((note, index) => (
           <ListGroup.Item
             variant="light"
             // action href="#"
