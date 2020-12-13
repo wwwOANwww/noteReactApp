@@ -9,7 +9,8 @@ export default function Editor({selectedNote, refreshList}) {
 
   const [title, setTitle] = useState('')
   useEffect(() => {
-    if (selectedNote) setTitle(selectedNote.title)
+    if (selectedNote) return setTitle(selectedNote.title)
+    setTitle('')
   }, [selectedNote])
 
   const onInputTitle = (e) => setTitle(e.target.value)
@@ -18,22 +19,38 @@ export default function Editor({selectedNote, refreshList}) {
   // console.log('title :', title, 'Body : ', body)
 
   useEffect(() => {
-    if (selectedNote) setBody(selectedNote.body)
+    if (selectedNote) return setBody(selectedNote.body)
+    setBody('')
   }, [selectedNote])
 
   const onSave = (e) => {
     e.preventDefault()
+    setBody('')
+    setTitle('')
     if (selectedNote) {
       N.updateNote(selectedNote.id, title, body)
-      console.log(N.getNotes())
+      // console.log(N.getNotes())
+
       return refreshList()
     }
     N.createNote(title, body)
     refreshList()
-    console.log(N.getNotes())
+    // console.log(N.getNotes())
   }
-  // console.log('save new note with title', title)
+  const onDelete = (e) => {
+    e.preventDefault()
 
+    if (selectedNote) {
+      N.deleteNote(selectedNote.id, title, body)
+      setBody('')
+      setTitle('')
+      // setSelectedNote(undefined)
+      refreshList()
+
+      // const {id} = selectedNote
+      // N.deleteNote(selectedNote.id)
+    }
+  }
   return (
     <div>
       <Form>
@@ -70,7 +87,12 @@ export default function Editor({selectedNote, refreshList}) {
         onClick={onSave}
       >
         Save
-      </Button>{' '}
+      </Button>
+      {selectedNote && (
+        <Button variant="danger" size="sm" className="delBtn" onClick={onDelete}>
+          Delete
+        </Button>
+      )}
     </div>
   )
 }

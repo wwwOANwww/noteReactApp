@@ -70,7 +70,12 @@
   width: 100px;
 }
 .saveBtn {
-  width: 100%;
+  width: 20%;
+  padding: 10px;
+  margin: 10px;
+}
+.delBtn {
+  width: 20%;
   padding: 10px;
   margin: 10px;
 }

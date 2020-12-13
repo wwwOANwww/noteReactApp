@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Editor from './components/Editor'
 import Search from './components/Search'
 import Allnotes from './components/Allnotes'
-import * as N from './utils/NoteHelpers'
+// import * as N from './utils/NoteHelpers'
 import {getNotes} from './utils/NoteHelpers'
 
 // console.log(N.createNote('55555', 'testNew', 'newbody'))
@@ -19,8 +19,12 @@ function App() {
   }, [setNotes])
 
   const refreshList = () => {
+    setSelectedNote(undefined)
     const notes = getNotes()
     setNotes([...notes])
+  }
+  const createList = () => {
+    setSelectedNote(undefined)
   }
   return (
     <Container>
@@ -37,7 +41,7 @@ function App() {
       <Row>
         <Col className="allNote" sm={12} md={6}>
           <div>
-            <Button variant="info" size="sm" className="mb-4 mt-2" block>
+            <Button variant="info" size="sm" className="mb-4 mt-2" bloc onClick={createList}>
               + New Note
             </Button>
           </div>
@@ -47,7 +51,11 @@ function App() {
         </Col>
         <Col className="editNote" sm={12} md={6}>
           Edit notes
-          <Editor refreshList={refreshList} selectedNote={selectedNote} />
+          <Editor
+            refreshList={refreshList}
+            selectedNote={selectedNote}
+            // setSelectedNote={setSelectedNote}
+          />
         </Col>
       </Row>
     </Container>

@@ -19,9 +19,9 @@ export function getNotes() {
 
 export function createNote(title, body) {
   const note = {
-    id: notes.length + 1,
-    title: title,
-    body: body,
+    id: Date.now(),
+    title,
+    body,
   }
   notes.push(note)
   return note
@@ -34,10 +34,15 @@ export function updateNote(id, title, body) {
     body,
   }
   notes.splice(indexToUpdate, 1, note)
+  //remove old note
+  notes.splice(indexToUpdate, 1)
+  // add the edited note to start
+  notes.splice(0, 0, note)
+
   return note
 }
 export function deleteNote(id) {
   const indexToDelete = notes.findIndex((note) => note.id === id)
-  notes.splice(indexToDelete, 1)
+  if (indexToDelete >= 0) notes.splice(indexToDelete, 1)
   return true
 }

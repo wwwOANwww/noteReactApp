@@ -15,9 +15,6 @@ export default function Allnotes({selectedNote, setSelectedNote, notes}) {
   const onSelectNote = (note) => {
     setSelectedNote(note)
   }
-  //const onSelectNote = (note) => {
-  //   console.log(note)
-  // }
 
   return (
     <>
