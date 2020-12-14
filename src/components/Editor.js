@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Button, Form} from 'react-bootstrap'
+import {Button, Form, Alert} from 'react-bootstrap'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as N from '../utils/NoteHelpers'
@@ -22,33 +22,59 @@ export default function Editor({selectedNote, refreshList}) {
     if (selectedNote) return setBody(selectedNote.body)
     setBody('')
   }, [selectedNote])
-
+  // const [isCreated, setIsCreated] = useState(false)
+  // const [isUpdated, setIsUpdated] = useState(false)
+  // const [isDeleted, setIsDeleted] = useState(false)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsCreated(false)
+  //   }, 3000)
+  // }, [isCreated])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsCreated(false)
+  //   }, 3000)
+  // }, [isUpdated])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsCreated(false)
+  //   }, 3000)
+  // }, [isDeleted])
+  const [status, setStatus] = useState('')
+  useEffect(() => {
+    setTimeout(() => {
+      setStatus('')
+    }, 3000)
+  }, [status])
   const onSave = (e) => {
     e.preventDefault()
     setBody('')
     setTitle('')
+
     if (selectedNote) {
       N.updateNote(selectedNote.id, title, body)
       // console.log(N.getNotes())
-
+      // setIsUpdated(true)
+      setStatus('Note updated!')
       return refreshList()
     }
     N.createNote(title, body)
+    // setIsCreated(true)
+    setStatus('Note created!')
+
     refreshList()
-    // console.log(N.getNotes())
   }
   const onDelete = (e) => {
     e.preventDefault()
-
     if (selectedNote) {
       N.deleteNote(selectedNote.id, title, body)
       setBody('')
       setTitle('')
-      // setSelectedNote(undefined)
-      refreshList()
+      // setIsDeleted(true)
+      setStatus('Note deleted!')
 
-      // const {id} = selectedNote
-      // N.deleteNote(selectedNote.id)
+      // setSelectedNote(undefined) -- we moved this to refreehList
+      refreshList()
     }
   }
   return (
@@ -93,6 +119,10 @@ export default function Editor({selectedNote, refreshList}) {
           Delete
         </Button>
       )}
+      {/* {isUpdated && <Alert variant="success">Note updated!</Alert>}
+      {isCreated && <Alert variant="success">Note created!</Alert>}
+      {isDeleted && <Alert variant="danger">Note deleted!</Alert>} */}
+      {status && <Alert variant="warning">{status}</Alert>}
     </div>
   )
 }

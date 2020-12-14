@@ -23,7 +23,8 @@ export function createNote(title, body) {
     title,
     body,
   }
-  notes.push(note)
+  // notes.push(note)
+  notes.splice(0, 0, note)
   return note
 }
 export function updateNote(id, title, body) {
