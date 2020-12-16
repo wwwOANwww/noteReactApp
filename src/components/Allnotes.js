@@ -4,7 +4,7 @@ import {ListGroup} from 'react-bootstrap'
 // import '../App.css'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
-let selectedNote = undefined
+// let selectedNote = undefined
 export default function Allnotes({selectedNote, setSelectedNote, notes}) {
   // or i can write like this 2 lines
   // export default function Allnotes(props) {
@@ -21,6 +21,8 @@ export default function Allnotes({selectedNote, setSelectedNote, notes}) {
       <ListGroup as="ul">
         {notes.map((note, index) => (
           <ListGroup.Item
+            key={note.id}
+            className="listAllNote"
             variant="light"
             // action href="#"
             //active={index === 0}

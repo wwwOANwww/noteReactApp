@@ -34,7 +34,7 @@ function App() {
 
       <Row>
         <Col sm={12} md={12}>
-          <Search> </Search>
+          {/* <Search /> */}
         </Col>
       </Row>
 

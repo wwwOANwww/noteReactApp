@@ -44,6 +44,9 @@
   margin: 0 20 20 20;
   padding: 0px;
 }
+.listAllNote li:hover {
+  opacity: 0.5;
+}
 .allNote li {
   display: flex;
   text-decoration: none;

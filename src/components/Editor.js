@@ -4,24 +4,26 @@ import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as N from '../utils/NoteHelpers'
 
-export default function Editor({selectedNote, refreshList}) {
+export default function Editor({selectedNote, setSelectedNote, refreshList}) {
   // console.log(selectedNote)
 
   const [title, setTitle] = useState('')
-  useEffect(() => {
-    if (selectedNote) return setTitle(selectedNote.title)
-    setTitle('')
-  }, [selectedNote])
+  const [body, setBody] = useState('')
 
   const onInputTitle = (e) => setTitle(e.target.value)
-  const [body, setBody] = useState('')
   const onInputBody = (e) => setBody(e.target.value)
   // console.log('title :', title, 'Body : ', body)
 
   useEffect(() => {
+    if (selectedNote) return setTitle(selectedNote.title)
+    setTitle('')
+  }, [selectedNote])
+  useEffect(() => {
     if (selectedNote) return setBody(selectedNote.body)
     setBody('')
   }, [selectedNote])
+
+  //here i moved everything in the STATUS effect
   // const [isCreated, setIsCreated] = useState(false)
   // const [isUpdated, setIsUpdated] = useState(false)
   // const [isDeleted, setIsDeleted] = useState(false)
@@ -40,12 +42,14 @@ export default function Editor({selectedNote, refreshList}) {
   //     setIsCreated(false)
   //   }, 3000)
   // }, [isDeleted])
+
   const [status, setStatus] = useState('')
   useEffect(() => {
     setTimeout(() => {
       setStatus('')
     }, 3000)
   }, [status])
+
   const onSave = (e) => {
     e.preventDefault()
     setBody('')
@@ -61,9 +65,9 @@ export default function Editor({selectedNote, refreshList}) {
     N.createNote(title, body)
     // setIsCreated(true)
     setStatus('Note created!')
-
     refreshList()
   }
+
   const onDelete = (e) => {
     e.preventDefault()
     if (selectedNote) {
