@@ -5,7 +5,7 @@ export default function Allnotes({selectedNote, setSelectedNote, notes, refreshL
   const onSelectNote = (note) => {
     setSelectedNote(note)
   }
-
+  if (!notes.length) return 'No Notes Found'
   return (
     <ListGroup>
       <ListGroup as="ul">
