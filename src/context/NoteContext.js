@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {getNotes} from '../utils/NoteHelpers'
 
 export const NoteContext = React.createContext(null)
-
 export default function Provider({children}) {
   const [notes, setNotes] = useState([])
 
