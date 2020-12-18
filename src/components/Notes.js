@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css'
 import Editor from './Editor'
 import Allnotes from './Allnotes'
-import {getNotes} from '../utils/NoteHelpers'
+import {getNotes} from '../utils/noteHelpers'
 
 export default function Notes() {
   const [selectedNote, setSelectedNote] = useState(undefined)
